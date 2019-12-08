@@ -1,8 +1,10 @@
 {
-  "name": "Create React Component",
-  "displayName": "Automate React Component creation",
+  "name": "automate-react",
+  "displayName": "Automate React Component",
   "description": "This extension automates the process of creating boilerplate code while creating a react component.",
   "version": "0.0.1",
+  "publisher": "zainsra",
+  "repository": "https://github.com/zainsra7/automate-react-component",
   "engines": {
     "vscode": "^1.40.0"
   },
@@ -14,12 +16,10 @@
   ],
   "main": "./out/extension.js",
   "contributes": {
-    "commands": [
-      {
-        "command": "extension.createreactcomponent",
-        "title": "Create React Component"
-      }
-    ]
+    "commands": [{
+      "command": "extension.createreactcomponent",
+      "title": "Create React Component"
+    }]
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",

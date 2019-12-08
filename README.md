@@ -1,35 +1,31 @@
-# helloworld README
+# Automate React Component
 
-This is the README for your extension "helloworld". After writing up a brief description, we recommend including the following sections.
+Automate-react-component is a vscode extension that creates a react component with necessary files and boilerplate code. This extension provides an easy way to instantiate new react components in your project without the hastle of copy-pasting code from other places.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+Below is the demo of creating `test-component-card` react component under `client/public/src` folder of the project.
 
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
+![feature X](images/automate-react-component.gif)
 
 > Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
 
-## Requirements
+## Usage
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+- Install the extension.
+- Open command pallete through `Command`+`Shift`+`P`.
+- Search and click on `Create React Component`.
+- Enter your component name e.g. `my-component`.
+- Next, specify the **relative** path from your project root where the newly created component should be placed e.g. `/home` will create `my-component` folder with relevant files under `<YourProjectRoot>/home`.
 
-## Extension Settings
+## Development
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
+- Clone the repository from https://github.com/zainsra7/automate-react-component
+- Open the project in VSCode:
+  - `cd automate-react-component`
+  - `code .`
+- Press `F5` to compile and run.
+- Follow the official API guide to make changes: https://code.visualstudio.com/api/get-started/extension-anatomy
 
 ## Release Notes
 
@@ -37,29 +33,11 @@ Users appreciate release notes as you update your extension.
 
 ### 1.0.0
 
-Initial release of ...
+Initial release of automate-react-component
 
-### 1.0.1
+---
 
-Fixed issue #.
+## Future Notes
 
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+- Clone this extension for other famous IDE(s) like Intellij, Atom.
+- Follow-up with a custom config extension where a user can specify their own version of boilerplate code/files based on the project.
