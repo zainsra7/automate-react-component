@@ -1,4 +1,5 @@
 #!/bin/bash
+#My first try at this project was in bash, so I'll leave this script here just for inspiration :)
 declare -a file_list
 import_react="import React from 'react'"
 split_component_name(){

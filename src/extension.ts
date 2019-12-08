@@ -1,5 +1,3 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
 const fs = require("fs");
 
@@ -60,6 +58,12 @@ describe('${componentNameInput}_Test', () => {
 `;
 };
 
+const get_component_fixtures_content = (componentNameInCamelCase: string) => {
+  return `export const ${componentNameInCamelCase}Fixtures = {
+    name: 'Test Component',
+  };`;
+};
+
 const input_component_name = async (regex: RegExp) => {
   const componentName = await vscode.window.showInputBox({
     value: "",
@@ -74,6 +78,7 @@ const input_component_name = async (regex: RegExp) => {
   });
   return componentName;
 };
+
 function is_dir(path: string) {
   try {
     var stat = fs.lstatSync(path);
@@ -83,6 +88,7 @@ function is_dir(path: string) {
     return false;
   }
 }
+
 const input_directory_path = async (componentName: string, path: string) => {
   const fileName = await vscode.window.showInputBox({
     value: "/",
@@ -101,16 +107,10 @@ const input_directory_path = async (componentName: string, path: string) => {
   return fileName;
 };
 
-const get_component_fixtures_content = (componentNameInCamelCase: string) => {
-  return `export const ${componentNameInCamelCase}Fixtures = {
-    name: 'Test Component',
-  };`;
-};
-
 const getCamelCaseName = (componentNameSplitArray: RegExpMatchArray) => {
   let componentCamelCaseName = "";
   componentNameSplitArray.map((name, index) => {
-    if (index == 0) {
+    if (index === 0) {
       componentCamelCaseName = name;
       return name;
     }
@@ -124,15 +124,16 @@ export function activate(context: vscode.ExtensionContext) {
   let disposable = vscode.commands.registerCommand(
     "extension.createreactcomponent",
     async () => {
-      // The code you place here will be executed every time your command is executed
       const currentWorkspace = vscode.workspace.workspaceFolders;
 
-      //Creating directory
+      //1. Creating component directory
       if (currentWorkspace) {
         const currentDirectory = vscode.Uri.parse(
           currentWorkspace[0].uri.fsPath + "/test-component"
         );
+        //Shoutout to https://levelup.gitconnected.com/converting-a-string-to-camelcase-in-javascript-f88a646a22b4
         const regex = /[A-Z\xC0-\xD6\xD8-\xDE]?[a-z\xDF-\xF6\xF8-\xFF]+|[A-Z\xC0-\xD6\xD8-\xDE]+(?![a-z\xDF-\xF6\xF8-\xFF])|\d+/g;
+
         let componentName = await input_component_name(regex);
         let componentNameSplitArray =
           componentName && componentName.match(regex);
@@ -175,7 +176,7 @@ export function activate(context: vscode.ExtensionContext) {
           directoryPath.fsPath + `/index.ts`
         );
 
-        //Creating component files
+        //2. Creating component files
         await vscode.workspace.fs.writeFile(
           componentFilePath,
           new Uint8Array([])
@@ -197,7 +198,7 @@ export function activate(context: vscode.ExtensionContext) {
           new Uint8Array([])
         );
 
-        //Writing file's content
+        //3. Writing content in each file
         await fs.writeFileSync(
           componentFilePath.fsPath,
           get_component_file_content(camelCaseComponentName, componentName),
@@ -233,6 +234,4 @@ export function activate(context: vscode.ExtensionContext) {
   );
   context.subscriptions.push(disposable);
 }
-
-// this method is called when your extension is deactivated
 export function deactivate() {}
