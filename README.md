@@ -8,8 +8,6 @@ Below is the demo of creating `test-component-card` react component under `clien
 
 ![feature X](images/automate-react-component.gif)
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
 ## Usage
 
 - Install the extension.
