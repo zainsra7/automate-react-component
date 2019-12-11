@@ -4,22 +4,76 @@
   "description": "This extension automates the process of creating boilerplate code while creating a react component.",
   "version": "0.0.1",
   "publisher": "zainsra",
-  "repository": "https://github.com/zainsra7/automate-react-component",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zainsra7/automate-react-component"
+  },
+  "icon": "images/icon.png",
+  "galleryBanner": {
+    "color": "#0094C8",
+    "theme": "light"
+  },
   "engines": {
     "vscode": "^1.40.0"
   },
   "categories": [
+    "Programming Languages",
     "Other"
+  ],
+  "keywords": [
+    "automate",
+    "react",
+    "react component",
+    "automation"
   ],
   "activationEvents": [
     "onCommand:extension.createreactcomponent"
   ],
   "main": "./out/extension.js",
   "contributes": {
-    "commands": [{
-      "command": "extension.createreactcomponent",
-      "title": "Create React Component"
-    }]
+    "commands": [
+      {
+        "command": "extension.createreactcomponent",
+        "title": "Create React Component"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "extension.createreactcomponent",
+        "key": "ctrl+shift+r",
+        "mac": "cmd+shift+r",
+        "when": "editorTextFocus"
+      }
+    ],
+    "configuration": {
+      "title": "Automate React",
+      "properties": {
+        "automatereact.files": {
+          "type": "array",
+          "default": [
+            {
+              "filename": "cN$.tsx",
+              "filePath": "",
+              "content": "import React from 'react';\r\nimport { Cn$Styles } from '.fn$.styles';\r\n\r\ninterface Props{\r\n    name: string;\r\n};\r\n\r\nexport const Cn$ = ({ name }: Props) => {\r\n  const classes = Cn$Styles({});\r\n\r\n  return(\r\n    <>\\${name}</>\r\n  );\r\n};"
+            },
+            {
+              "filename": "cN$.styles.ts",
+              "filePath": "/client/src/components/styles/",
+              "content": "import { createStyles, makeStyles } from '@material-ui/core';\r\nimport { COLOURS } from '../../../utils/constants';\r\n\r\nexport const Cn$Styles = makeStyles(() => \r\n  createStyles({\r\n    root: {\r\n      display: 'flex',\r\n    },\r\n  }),\r\n);"
+            }
+          ],
+          "description": "Specify the templates of files you want to create for the component."
+        }
+      }
+    },
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "extension.createreactcomponent",
+          "group": "2_workspace"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
@@ -38,5 +92,10 @@
     "typescript": "^3.6.4",
     "tslint": "^5.20.0",
     "vscode-test": "^1.2.2"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/zainsra7/automate-react-component/issues",
+    "email": "m.zain.ul.islam@gmail.com"
+  },
+  "homepage": "https://github.com/zainsra7/automate-react-component/blob/master/README.md"
 }
