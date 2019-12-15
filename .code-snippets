@@ -1,0 +1,52 @@
+{
+  "React functional component in typescript": {
+    "prefix": "rc",
+    "body": [
+      "import React from 'react';",
+      "interface Props {",
+      "\t$2: string;",
+      "};\n",
+      "export const $1 = ({ $2 }: Props) => {",
+      "\treturn(<div />);",
+      "};\n"
+    ],
+    "description": "Creates skeleton code for react functional component in typescript "
+  },
+  "React functional component in javascript": {
+    "prefix": "rc",
+    "body": [
+      "import React from 'react';",
+      "export const ${TM_FILENAME_BASE/[^0-9^a-z]//gi} = () => {",
+      "\treturn(<div />);",
+      "};\n"
+    ],
+    "scope": "javascript",
+    "description": "Creates functional component skeleton code in javascript"
+  },
+  "React functional component test in typescript": {
+    "prefix": "rt",
+    "body": [
+      "import React from 'react';\r\nimport 'jest-dom/extend-expect';\r\nimport { $1 } from './$3.fixtures';\r\nimport { $2 } from './$3';\r\n\r\ndescribe('$2 Tests', () => {\r\n  it('component renders correctly', async () => {\r\n    const { getByTestId, findByText } = renderWithRouter(\r\n      <MockProviders>\r\n        <$2 name={$1.name}/>\r\n      </MockProviders>\r\n    );\r\n\texpect($1.name).toBeInDocument();\r\n  });\r\n});\n"
+    ],
+    "description": "Creates skeleton code for testing react functional components with jest in typescript"
+  },
+  "React functional component styles in typescript": {
+    "prefix": "rs",
+    "body": [
+      "import { createStyles, makeStyles } from '@material-ui/core';\r\n\r\nexport const $1Styles = makeStyles(() => \r\n  createStyles({\r\n    root: {\r\n      display: 'flex',\r\n    },\r\n  }),\r\n);\n"
+    ],
+    "description": "Creates skeleton code for styling react functional component in typescript using Material UI"
+  },
+  "React functional component fixtures in typescript": {
+    "prefix": "rf",
+    "body": ["export const $1Fixtures = {\r\n    $2: '$3',\r\n  };\n"],
+    "description": "Creates skeleton code for react functional component fixtures in typescript"
+  },
+  "Material UI Dialog": {
+    "prefix": "md",
+    "body": [
+      "import React, { ReactNode } from 'react';\r\nimport {\r\n  Button,\r\n  Dialog,\r\n  DialogTitle,\r\n  DialogContent,\r\n  DialogActions,\r\n  CircularProgress,\r\n} from '@material-ui/core';\r\n\r\ninterface Props {\r\n  title: string;\r\n  onSave: () => Promise<void>;\r\n  onCancel: () => void;\r\n  open: boolean;\r\n  isSaveDisabled: boolean;\r\n  isSaving: boolean;\r\n  children: ReactNode;\r\n}\r\n\r\nexport const $1Dialog = ({\r\n  isSaving,\r\n  isSaveDisabled,\r\n  title,\r\n  open,\r\n  onSave,\r\n  onCancel,\r\n  children,\r\n}: Props) => {\r\n  return (\r\n    <Dialog\r\n      disableBackdropClick\r\n      disableEscapeKeyDown\r\n      maxWidth=\"xs\"\r\n      aria-labelledby=\"confirmation-dialog-title\"\r\n      open={open}\r\n      PaperProps={{\r\n        style: { minWidth: 300 },\r\n      }}\r\n    >\r\n      <DialogTitle id=\"confirmation-dialog-title\">{title}</DialogTitle>\r\n      <DialogContent dividers>{children}</DialogContent>\r\n      <DialogActions>\r\n        <Button autoFocus onClick={onCancel} color=\"primary\">\r\n          Cancel\r\n        </Button>\r\n        <Button\r\n          onClick={() => onSave()}\r\n          color=\"primary\"\r\n          variant=\"contained\"\r\n          disabled={isSaveDisabled}\r\n        >\r\n          {isSaving ? <CircularProgress size=\"1rem\" color=\"inherit\" /> : 'Save'}\r\n        </Button>\r\n      </DialogActions>\r\n    </Dialog>\r\n  );\r\n};\r\n"
+    ],
+    "description": "Creates skeleton code for Material-UI Dialog"
+  }
+}

@@ -14,65 +14,71 @@
     "theme": "light"
   },
   "engines": {
-    "vscode": "^1.40.0"
+    "vscode": "^1.28.0"
   },
   "categories": [
     "Programming Languages",
-    "Other"
+    "Other",
+    "Snippets"
   ],
   "keywords": [
     "automate",
     "react",
     "react component",
-    "automation"
+    "snippets"
   ],
   "activationEvents": [
     "onCommand:extension.createreactcomponent"
   ],
   "main": "./out/extension.js",
   "contributes": {
-    "commands": [
-      {
-        "command": "extension.createreactcomponent",
-        "title": "Create React Component"
-      }
-    ],
-    "keybindings": [
-      {
-        "command": "extension.createreactcomponent",
-        "key": "ctrl+shift+r",
-        "mac": "cmd+shift+r",
-        "when": "editorTextFocus"
-      }
-    ],
+    "commands": [{
+      "command": "extension.createreactcomponent",
+      "title": "Create React Component"
+    }],
+    "keybindings": [{
+      "command": "extension.createreactcomponent",
+      "key": "ctrl+shift+r",
+      "mac": "cmd+shift+r"
+    }],
     "configuration": {
       "title": "Automate React",
       "properties": {
         "automatereact.files": {
           "type": "array",
-          "default": [
-            {
-              "filename": "cN$.tsx",
-              "filePath": "",
-              "content": "import React from 'react';\r\nimport { Cn$Styles } from '.fn$.styles';\r\n\r\ninterface Props{\r\n    name: string;\r\n};\r\n\r\nexport const Cn$ = ({ name }: Props) => {\r\n  const classes = Cn$Styles({});\r\n\r\n  return(\r\n    <>\\${name}</>\r\n  );\r\n};"
+          "default": [{
+              "fileName": "fn$.tsx",
+              "content": "import React from 'react';\r\nimport { Cn$Styles } from './fn$.styles';\r\n\r\ninterface Props {\r\n    name: string;\r\n};\r\n\r\nexport const Cn$ = ({ name }: Props) => {\r\n  const classes = Cn$Styles({});\r\n\r\n  return(\r\n    <>${name}</>\r\n  );\r\n};\n"
             },
             {
-              "filename": "cN$.styles.ts",
-              "filePath": "/client/src/components/styles/",
-              "content": "import { createStyles, makeStyles } from '@material-ui/core';\r\nimport { COLOURS } from '../../../utils/constants';\r\n\r\nexport const Cn$Styles = makeStyles(() => \r\n  createStyles({\r\n    root: {\r\n      display: 'flex',\r\n    },\r\n  }),\r\n);"
+              "fileName": "fn$.styles.ts",
+              "content": "import { createStyles, makeStyles } from '@material-ui/core';\r\n\r\nexport const Cn$Styles = makeStyles(() => \r\n  createStyles({\r\n    root: {\r\n      display: 'flex',\r\n    },\r\n  }),\r\n);\n"
+            },
+            {
+              "fileName": "fn$.test.tsx",
+              "content": "import React from 'react';\r\nimport 'jest-dom/extend-expect';\r\nimport { cN$Fixtures } from './fn$.fixtures';\r\nimport { Cn$ } from './fn$';\r\n\r\ndescribe('Cn$ Tests', async() => {\r\n  it('component renders correctly', () => {\r\n    const { getByTestId, findByText } = renderWithRouter(\r\n      <MockProviders>\r\n        <Cn$ name={cN$Fixtures.name}/>\r\n      </MockProviders>\r\n    );\r\n\texpect(cN$Fixtures.name).toBeInTheDocument();\r\n  });\r\n});\n"
+            },
+            {
+              "fileName": "fn$.fixtures.ts",
+              "content": "export const cN$Fixtures = {\r\n\tname: 'Test Component',\r\n  };\n"
+            },
+            {
+              "fileName": "index.ts",
+              "content": "export * from './fn$';\n"
             }
           ],
-          "description": "Specify the templates of files you want to create for the component."
+          "description": "Specify the skeleton code of files you want to create for your component. Please refer to the Readme for examples and valid format. You can use following link for escaping JSON string to use as file content:\n(https://www.freeformatter.com/json-escape.html)"
         }
       }
     },
+    "snippets": [{
+      "path": "./.code-snippets"
+    }],
     "menus": {
-      "explorer/context": [
-        {
-          "command": "extension.createreactcomponent",
-          "group": "2_workspace"
-        }
-      ]
+      "explorer/context": [{
+        "command": "extension.createreactcomponent",
+        "group": "2_workspace"
+      }]
     }
   },
   "scripts": {
