@@ -11,7 +11,7 @@
   "icon": "images/icon.png",
   "galleryBanner": {
     "color": "#0094C8",
-    "theme": "light"
+    "theme": "dark"
   },
   "engines": {
     "vscode": "^1.28.0"
@@ -32,21 +32,26 @@
   ],
   "main": "./out/extension.js",
   "contributes": {
-    "commands": [{
-      "command": "extension.createreactcomponent",
-      "title": "Create React Component"
-    }],
-    "keybindings": [{
-      "command": "extension.createreactcomponent",
-      "key": "ctrl+shift+r",
-      "mac": "cmd+shift+r"
-    }],
+    "commands": [
+      {
+        "command": "extension.createreactcomponent",
+        "title": "Create React Component"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "extension.createreactcomponent",
+        "key": "ctrl+shift+r",
+        "mac": "cmd+shift+r"
+      }
+    ],
     "configuration": {
       "title": "Automate React",
       "properties": {
         "automatereact.files": {
           "type": "array",
-          "default": [{
+          "default": [
+            {
               "fileName": "fn$.tsx",
               "content": "import React from 'react';\r\nimport { Cn$Styles } from './fn$.styles';\r\n\r\ninterface Props {\r\n    name: string;\r\n};\r\n\r\nexport const Cn$ = ({ name }: Props) => {\r\n  const classes = Cn$Styles({});\r\n\r\n  return(\r\n    <>${name}</>\r\n  );\r\n};\n"
             },
@@ -71,14 +76,18 @@
         }
       }
     },
-    "snippets": [{
-      "path": "./.code-snippets"
-    }],
+    "snippets": [
+      {
+        "path": "./.code-snippets"
+      }
+    ],
     "menus": {
-      "explorer/context": [{
-        "command": "extension.createreactcomponent",
-        "group": "2_workspace"
-      }]
+      "explorer/context": [
+        {
+          "command": "extension.createreactcomponent",
+          "group": "2_workspace"
+        }
+      ]
     }
   },
   "scripts": {
